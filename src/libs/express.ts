@@ -3,6 +3,7 @@ import type { Request, Response, NextFunction } from "express";
 //
 import sendPayload from "../utils/sendPayload.utils";
 import generatePayload from "../utils/generatePayload.utils";
+import maskSensitiveData from "../utils/maskSensitiveData.utils";
 import getRequestDuration from "../utils/getRequestDuration.utils";
 
 //
@@ -39,6 +40,9 @@ export default function treblle(options?: ITreblleOptions) {
     if (!apiKey || !projectId) {
       return next();
     }
+
+    //
+    const maskingKeys = options?.maskingKeys ?? [];
 
     //
     const excludedMethods =
@@ -81,6 +85,7 @@ export default function treblle(options?: ITreblleOptions) {
       const requestQuery = req.query ?? {};
 
       const requestBodyPayload = { ...requestBody, ...requestQuery };
+      const responseBodyPayload = JSON.parse(responseBody ?? "{}");
 
       //
       const trebllePayload = generatePayload({
@@ -90,14 +95,14 @@ export default function treblle(options?: ITreblleOptions) {
         url: completeUrl,
         protocol: req.protocol,
         request: {
-          body: requestBodyPayload,
-          headers: req.headers,
+          body: maskSensitiveData(requestBodyPayload, maskingKeys),
+          headers: maskSensitiveData(req.headers, maskingKeys),
           method: req.method,
           userAgent: req.headers["user-agent"] ?? "",
         },
         reponse: {
-          body: JSON.parse(responseBody ?? "{}"),
-          headers: res.getHeaders(),
+          body: maskSensitiveData(responseBodyPayload, maskingKeys),
+          headers: maskSensitiveData(res.getHeaders(), maskingKeys),
           loadTime: getRequestDuration(requestStartTime),
           size: res.get("content-length") ?? "",
           statusCode: res.statusCode,
