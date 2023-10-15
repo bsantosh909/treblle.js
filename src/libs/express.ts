@@ -40,6 +40,15 @@ export default function treblle(options?: ITreblleOptions) {
       return next();
     }
 
+    //
+    const excludedMethods =
+      options?.excludeMethod?.map((metohd) => metohd.toUpperCase()) ?? [];
+
+    // Checking if request method is excluded from tracking
+    if (excludedMethods.includes(req.method)) {
+      return next();
+    }
+
     // Tracking the start tiem for the request
     const requestStartTime = process.hrtime();
 
