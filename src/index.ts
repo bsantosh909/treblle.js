@@ -1,12 +1,15 @@
 import "dotenv/config";
 
 //
+import useKoaMiddleware from "./libs/koa";
 import useExpressMiddleware from "./libs/express";
 
 // Named export
-export const useExpress = useExpressMiddleware;
+export const useTreblleKoa = useKoaMiddleware;
+export const useTreblleExpress = useExpressMiddleware;
 
 // Default export
 export default {
-  useExpress: useExpressMiddleware,
+  useTreblleKoa: useKoaMiddleware,
+  useTreblleExpress: useExpressMiddleware,
 };
