@@ -10,6 +10,9 @@ const validTreblleEndpoints = [
 ];
 
 //
+const debugEndpoint = "https://debug.treblle.com";
+
+//
 let activeEndpointIndex = 0;
 
 /**
@@ -18,10 +21,13 @@ let activeEndpointIndex = 0;
  */
 export default async function sendPayload(
   payload: ITrebllePayload,
-  apiKey: string
+  apiKey: string,
+  debugMode?: boolean
 ) {
   try {
-    const endpointToHit = validTreblleEndpoints[activeEndpointIndex];
+    const endpointToHit = debugMode
+      ? debugEndpoint
+      : validTreblleEndpoints[activeEndpointIndex];
 
     // Sending the data to treblle
     fetch(endpointToHit, {
@@ -34,7 +40,9 @@ export default async function sendPayload(
     });
 
     // Updating active endpoint index
-    activeEndpointIndex = (activeEndpointIndex + 1) % 3;
+    if (!debugEndpoint) {
+      activeEndpointIndex = (activeEndpointIndex + 1) % 3;
+    }
   } catch (error) {
     console.error("Treblle.js] - Unable to send data to treblle\n");
     console.error(error);

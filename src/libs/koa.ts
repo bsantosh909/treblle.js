@@ -38,6 +38,7 @@ export default function treblle(options?: ITreblleOptions) {
     }
 
     //
+    const isDebugMode = options?.debug ?? false;
     const maskingKeys = options?.maskingKeys ?? [];
 
     //
@@ -89,6 +90,6 @@ export default function treblle(options?: ITreblleOptions) {
     });
 
     // Sending data to treblle
-    sendPayload(trebllePayload, apiKey);
+    sendPayload(trebllePayload, apiKey, isDebugMode);
   };
 }
