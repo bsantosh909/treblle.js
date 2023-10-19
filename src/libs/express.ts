@@ -42,6 +42,7 @@ export default function treblle(options?: ITreblleOptions) {
     }
 
     //
+    const isDebugMode = options?.debug ?? false;
     const maskingKeys = options?.maskingKeys ?? [];
 
     //
@@ -111,7 +112,7 @@ export default function treblle(options?: ITreblleOptions) {
       });
 
       //
-      sendPayload(trebllePayload, apiKey);
+      sendPayload(trebllePayload, apiKey, isDebugMode);
     });
 
     // Everything is alright, let's proceed
