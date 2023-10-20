@@ -1,12 +1,13 @@
 {
   "name": "treblle.js",
   "description": "Node.js SDK for treblle",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "type": "commonjs",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
