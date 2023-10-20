@@ -23,6 +23,26 @@
 
 Treblle is a lightweight SDK that helps Engineering and Product teams build, ship & maintain REST based APIs faster.
 
+## How to use treblle.js
+
+`treblle.js` can be used with `Express` and `Koa` at the time being, and we plan to expand it to support more frameworks in the future.
+
+Using it is as simple as:
+
+```ts
+import { useTreblleExpress, useTreblleKoa } from "treblle.js";
+
+// Usage with Express
+app.use(useTreblleExpress());
+
+// Usage with Koa
+app.use(useTreblleKoa());
+```
+
+The SDK reads your project id and api key through the environment variables `TREBLLE_API_KEY` and `TREBLLE_PROJECT_ID`, so as long as you are provide those you should be good.
+
+More configuration options like `maskingKeys` and `excludeMethod` can be provided as well in order to customize your application to your needs.
+
 ## Features
 
 <div align="center">
@@ -39,8 +59,8 @@ Treblle is a lightweight SDK that helps Engineering and Product teams build, shi
 - [API Lifecycle Collaboration](https://www.treblle.com/features/api-lifecycle)
 - [Native Treblle Apps](https://www.treblle.com/features/native-apps)
 
-
 ## How Treblle Works
+
 Once you’ve integrated a Treblle SDK in your codebase, this SDK will send requests and response data to your Treblle Dashboard.
 
 In your Treblle Dashboard you get to see real-time requests to your API, auto-generated API docs, API analytics like how fast the response was for an endpoint, the load size of the response, etc.
@@ -52,6 +72,7 @@ Treblle also uses the requests sent to your Dashboard to calculate your API scor
 ## Security
 
 ### Masking fields
+
 Masking fields ensure certain sensitive data are removed before being sent to Treblle.
 
 To make sure masking is done before any data leaves your server [we built it into all our SDKs](https://docs.treblle.com/en/security/masked-fields#fields-masked-by-default).
@@ -59,7 +80,6 @@ To make sure masking is done before any data leaves your server [we built it int
 This means data masking is super fast and happens on a programming level before the API request is sent to Treblle. You can [customize](https://docs.treblle.com/en/security/masked-fields#custom-masked-fields) exactly which fields are masked when you’re integrating the SDK.
 
 > Visit the [Masked fields](https://docs.treblle.com/en/security/masked-fields) section of the [docs](https://docs.sailscasts.com) for the complete documentation.
-
 
 ## Get Started
 
@@ -70,6 +90,7 @@ This means data masking is super fast and happens on a programming level before 
 ### Install the SDK
 
 <!-- Installation instruction for the platform goes here -->
+
 > See the [docs]() for this SDK to learn more.
 
 ## Available SDKs
@@ -99,9 +120,9 @@ Besides the SDKs, we also provide helpers and configuration used for SDK
 development. If you're thinking about contributing to or creating a SDK, have a look at the resources
 below:
 
-- [`treblle-utils`](https://github.com/Treblle/treblle-utils):  A set of helpers and
+- [`treblle-utils`](https://github.com/Treblle/treblle-utils): A set of helpers and
   utility functions useful for the JavaScript SDKs.
-- [`php-utils`](https://github.com/Treblle/php-utils):   A set of helpers and
+- [`php-utils`](https://github.com/Treblle/php-utils): A set of helpers and
   utility functions useful for the PHP SDKs.
 
 ## Community 💙
@@ -127,6 +148,7 @@ Here are some ways of contributing to making Treblle better:
 - Send a pull request to any of our [open source repositories](https://github.com/Treblle) on Github. Check the contribution guide on the repo you want to contribute to for more details about how to contribute. We're looking forward to your contribution!
 
 ### Contributors
+
 <!-- Replace link with the link of the SDK contributors-->
 <a href="https://github.com/Treblle/treblle-sails/graphs/contributors">
   <p align="center">
